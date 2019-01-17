@@ -1,14 +1,15 @@
 {
-  "name": "create-dos-box",
+  "name": "create-dosbox",
   "version": "1.0.0",
   "description": "Set up a dosbox environment in browser ",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "create-dosbox": "node tasks/create-dosbox.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/caiiiycuk/create-dos-box.git"
+    "url": "git+https://github.com/caiiiycuk/create-dosbox.git"
   },
   "keywords": [
     "dosbox",
@@ -17,7 +18,7 @@
   "author": "Alexander Guryanov (aka caiiiycuk)",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/caiiiycuk/create-dos-box/issues"
+    "url": "https://github.com/caiiiycuk/js-dos/issues"
   },
-  "homepage": "https://github.com/caiiiycuk/create-dos-box#readme"
+  "homepage": "https://github.com/caiiiycuk/create-dosbox#readme"
 }
