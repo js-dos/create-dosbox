@@ -5,6 +5,7 @@ Just type this to run bootstrap dosbox with digger in browser:
 ```
 npx create-dosbox my-app
 cd my-app
+npm install
 npm start
 ```
 
