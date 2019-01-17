@@ -1,7 +1,7 @@
 Bootstrapping
 =============
 
-Just type this to run bootstrap dosbox with digger in browser:
+Just type this to bootstrap dosbox with digger in browser:
 ```
 npx create-dosbox my-app
 cd my-app
