@@ -10,3 +10,5 @@ npm start
 ```
 
 Dosbox is provided by [js-dos](https://github.com/caiiiycuk/js-dos/tree/6.22), follow link to read how to configure and use js-dos.
+
+![Digger in browser](https://github.com/caiiiycuk/create-dosbox/raw/master/digger.gif)
