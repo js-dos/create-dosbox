@@ -9,6 +9,14 @@ npm install
 npm start
 ```
 
-Dosbox is provided by [js-dos](https://github.com/caiiiycuk/js-dos/tree/6.22), follow link to read how to configure and use js-dos.
-
 ![Digger in browser](https://github.com/caiiiycuk/create-dosbox/raw/master/digger.gif)
+
+If you have archive wiht dos programm you can bootstrap it:
+```
+npx create-dosbox my-app archive.zip
+cd my-app
+npm intall
+npm start
+```
+
+Dosbox is provided by [js-dos](https://github.com/caiiiycuk/js-dos/tree/6.22), follow link to read how to configure and use js-dos.

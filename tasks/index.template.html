@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>js-dos 6.22, Digger example</title>
+  <title>js-dos 6.22</title>
   <script src="js-dos.js"></script>
   <style>
     canvas {
@@ -18,7 +18,7 @@
   <script>
     Dos(document.getElementById("jsdos")).ready((fs, main) => {
       fs.extract("digger.zip").then(() => {
-        main(["DIGGER.COM"])
+        main(["-c", "DIGGER.COM"])
       });
     });
   </script>

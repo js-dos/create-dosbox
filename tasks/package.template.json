@@ -1,7 +1,7 @@
 {
-  "name": "js-dos-digger",
+  "name": "js-dos-template",
   "version": "1.0.0",
-  "description": "js-dos 6.22, Digger example",
+  "description": "js-dos 6.22",
   "scripts": {
     "start": "http-server",
     "test": "echo \"Error: no test specified\" && exit 1"
