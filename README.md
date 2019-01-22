@@ -19,4 +19,4 @@ npm intall
 npm start
 ```
 
-Dosbox is provided by [js-dos](https://github.com/caiiiycuk/js-dos/tree/6.22), follow link to read how to configure and use js-dos.
+Dosbox is provided by [js-dos](https://js-dos.com), follow link to read how to configure and use js-dos.
