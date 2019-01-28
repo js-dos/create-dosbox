@@ -37,7 +37,7 @@ try {
 }
 
 const root = path.join(__dirname, "..");
-const jsdos = path.join(root, "node_modules", "js-dos");
+const jsdos = path.join(root, "node_modules", "js-dos", "dist");
 const indexHtml = path.join(target, "public", "index.html")
 
 fsextra.copySync(path.join(jsdos, "docs"), path.join(target, "docs"));
