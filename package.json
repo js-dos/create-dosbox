@@ -1,6 +1,6 @@
 {
   "name": "create-dosbox",
-  "version": "6.22.32",
+  "version": "6.22.33",
   "description": "Set up a dosbox environment in browser ",
   "bin": "tasks/create-dosbox.js",
   "main": "tasks/create-dosbox.js",
@@ -25,7 +25,7 @@
   "dependencies": {
     "adm-zip": "^0.4.13",
     "fs-extra": "^7.0.1",
-    "js-dos": "^6.22.32",
+    "js-dos": "^6.22.33",
     "replace-in-file": "^3.4.3"
   },
   "devDependencies": {}
