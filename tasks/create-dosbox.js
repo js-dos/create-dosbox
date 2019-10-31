@@ -46,6 +46,12 @@ fsextra.copySync(path.join(jsdos, "js-dos.js.map"), path.join(target, "public", 
 fsextra.copySync(path.join(jsdos, "wdosbox.wasm.js"), path.join(target, "public", "wdosbox.wasm.js"));
 fsextra.copySync(path.join(jsdos, "wdosbox.js"), path.join(target, "public", "wdosbox.js"));
 fsextra.copySync(path.join(jsdos, "wdosbox.js.symbols"), path.join(target, "public", "wdosbox.js.symbols"));
+fsextra.copySync(path.join(jsdos, "wdosbox-emterp.wasm.js"), path.join(target, "public", "wdosbox-emterp.wasm.js"));
+fsextra.copySync(path.join(jsdos, "wdosbox-emterp.js"), path.join(target, "public", "wdosbox-emterp.js"));
+fsextra.copySync(path.join(jsdos, "wdosbox-emterp.js.symbols"), path.join(target, "public", "wdosbox-emterp.js.symbols"));
+fsextra.copySync(path.join(jsdos, "wdosbox-nosync.wasm.js"), path.join(target, "public", "wdosbox-nosync.wasm.js"));
+fsextra.copySync(path.join(jsdos, "wdosbox-nosync.js"), path.join(target, "public", "wdosbox-nosync.js"));
+fsextra.copySync(path.join(jsdos, "wdosbox-nosync.js.symbols"), path.join(target, "public", "wdosbox-nosync.js.symbols"));
 fsextra.copySync(path.join(root, "tasks", "index.template.html"), indexHtml);
 fsextra.copySync(path.join(root, "tasks", "package.template.json"), path.join(target, "package.json"));
 
