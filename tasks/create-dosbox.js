@@ -52,6 +52,15 @@ fsextra.copySync(path.join(jsdos, "wdosbox-emterp.js.symbols"), path.join(target
 fsextra.copySync(path.join(jsdos, "wdosbox-nosync.wasm.js"), path.join(target, "public", "wdosbox-nosync.wasm.js"));
 fsextra.copySync(path.join(jsdos, "wdosbox-nosync.js"), path.join(target, "public", "wdosbox-nosync.js"));
 fsextra.copySync(path.join(jsdos, "wdosbox-nosync.js.symbols"), path.join(target, "public", "wdosbox-nosync.js.symbols"));
+fsextra.copySync(path.join(jsdos, "dosbox.mem.js"), path.join(target, "public", "dosbox.mem.js"));
+fsextra.copySync(path.join(jsdos, "dosbox.js"), path.join(target, "public", "dosbox.js"));
+fsextra.copySync(path.join(jsdos, "dosbox.js.symbols"), path.join(target, "public", "dosbox.js.symbols"));
+fsextra.copySync(path.join(jsdos, "dosbox-emterp.mem.js"), path.join(target, "public", "dosbox-emterp.mem.js"));
+fsextra.copySync(path.join(jsdos, "dosbox-emterp.js"), path.join(target, "public", "dosbox-emterp.js"));
+fsextra.copySync(path.join(jsdos, "dosbox-emterp.js.symbols"), path.join(target, "public", "dosbox-emterp.js.symbols"));
+fsextra.copySync(path.join(jsdos, "dosbox-nosync.mem.js"), path.join(target, "public", "dosbox-nosync.mem.js"));
+fsextra.copySync(path.join(jsdos, "dosbox-nosync.js"), path.join(target, "public", "dosbox-nosync.js"));
+fsextra.copySync(path.join(jsdos, "dosbox-nosync.js.symbols"), path.join(target, "public", "dosbox-nosync.js.symbols"));
 fsextra.copySync(path.join(root, "tasks", "index.template.html"), indexHtml);
 fsextra.copySync(path.join(root, "tasks", "package.template.json"), path.join(target, "package.json"));
 
