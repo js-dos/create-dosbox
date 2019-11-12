@@ -1,9 +1,9 @@
 [js-dos 6.22](https://js-dos.com)
 ===========
 
-[![Build Status](https://travis-ci.org/caiiiycuk/js-dos.svg?branch=6.22)](https://travis-ci.org/caiiiycuk/js-dos) [![By Me A Coffee](/bmc.png)](https://www.buymeacoffee.com/caiiiycuk)
+[![Build Status](https://travis-ci.org/caiiiycuk/js-dos.svg?branch=6.22)](https://travis-ci.org/caiiiycuk/js-dos) [![Donate](https://img.shields.io/badge/%E2%98%95-Donate-orange)](https://www.buymeacoffee.com/caiiiycuk)
 
-6.22 is a javascript library that allows you to run DOS programs in browser. js-dos provides nice and easy to use javascript api over dosbox. Try our <a href="https://dosify.me">demo app</a>.
+6.22 is a javascript library that allows you to run DOS programs in browser. js-dos provides nice and easy to use javascript api over dosbox. Try our live <a href="https://js-dos.com/#js-dos-622-demo">examples</a>.
 
 You can found previous version here [v3](https://js-dos.com/index_v3.html)
 
@@ -93,8 +93,9 @@ You can have same results if just create simple html page:
 
 ## Archives
 
-You can obtain latest build using this links ([versions](http://js-dos.com/#js-dos-622-faq-changing-dosbox-variant)):
+You can obtain latest build using this ([versions](http://js-dos.com/#js-dos-622-faq-changing-dosbox-variant)):
 
+ - js-dos api: https://js-dos.com/6.22/current/js-dos.js
  - default version: https://js-dos.com/6.22/current/wdosbox.js
  - emterpreter version: https://js-dos.com/6.22/current/wdosbox-emterp.wasm.js
  - nosync version: https://js-dos.com/6.22/current/wdosbox-nosync.wasm.js
@@ -131,6 +132,25 @@ const Dos = (window as any).Dos as DosFactory;
 ```
 
 See example of React component in FAQ section
+
+## Demo
+
+### Examples
+
+All examples are interactive, read more in [**Examples**](https://js-dos.com/6.22/examples/) sections.
+
+### Demo app
+<a href="https://dosify.me">Demo app</a> that allows try js-dos box with your game archive.
+
+### Clients
+You can found real use of js-dos on certain websites about dos games.
+
+|[![JS-DOS Games](/games-logo.png)](https://js-dos.com/games/)|[![Dos Games Archive](/dga-logo.png)](https://www.dosgamesarchive.com/play-online/)|[![Emupedia](/emupedia-logo.png)](https://emupedia.net/beta/emuos/)|
+|:---:|:---:|:---:|
+|[JS-DOS Games](https://js-dos.com/games/)|[Dos Games Archive](https://www.dosgamesarchive.com/play-online/)|[Emupedia](https://emupedia.net/beta/emuos/)|
+
+Please open issue on github if you want to add link for another site that uses js-dos.
+
 
 ## API Reference
 
@@ -169,6 +189,9 @@ By changing wdosboxUrl (see above) you can select different dosbox variants:
 * `dosbox.js` - same as dosbox-emterp.js because default version can't be compiled to asm.js
 * `dosbox-emterp.js` - same as wdosbox-emterp.js but javascript (asm.js)
 * `dosbox-nosync.js` - same as wdosbox-nosync.js but javascript (asm.js)
+
+Also you can choose from profiling version of implementation: `wdosbox-profiling.js`,
+`wdosbox-emterp-profiling.js`, `wdosbox-nosync-profiling.js`.
 
 Take in account even if you use wasm version of dosbox it will be automatically fallbacked by javascript version if wasm can't start
 
