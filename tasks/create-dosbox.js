@@ -1,129 +1,108 @@
-#!/usr/bin/env node
-const fs = require("fs");
-const path = require("path");
-const fsextra = require("fs-extra");
-const readline = require('readline');
-const replace = require('replace-in-file');
-const AdmZip = require("adm-zip");
+#!/use/bin/env node
+const fs = require("fs-extra");
+const inquirer = require("inquirer");
+const { join } = require("path");
+const fuzzysort = require("fuzzysort");
+const Downloader = require("nodejs-file-downloader");
 
+const root = join(__dirname, "..");
+const tasks = join(root, "tasks");
+const jsdos = join(root, "node_modules", "js-dos", "dist");
+const indexJson = join(tasks, "index.json");
 const target = process.argv[2];
-const archive = process.argv[3];
 
 if (!target) {
-    console.error("Target directory is not set!");
-    console.log("--")
-    console.log("Usage:");
-    console.log("\tnpx create-dosbox my-app [archive.zip]");
-    console.log("\tcd my-app");
-    console.log("\tnpm install");
-    console.log("\tnpm start");
-    process.exit(-1);
+	console.error("Target directory is not set!");
+	console.log("--")
+	console.log("Usage:");
+	console.log("\tnpx create-dosbox my-app");
+	console.log("\tcd my-app");
+	console.log("\tnpm install");
+	console.log("\tnpm start");
+	process.exit(-1);
 }
 
 if (fs.existsSync(target)) {
-    console.error("Path '" + target + "' already exists, exiting...");
-    process.exit(-2);
+	console.error("Target directory already exists. Exiting...");
+	process.exit(-1);
 }
 
-if (archive && !fs.existsSync(archive)) {
-    console.error("Archive '" + archive + "' does not exists, exiting...");
-    process.exit(-3);
-}
+const index = JSON.parse(fs.readFileSync(indexJson));
 
-try {
-    fs.mkdirSync(target)
-} catch (err) {
-    if (err.code !== 'EEXIST') throw err
-}
+inquirer
+	.prompt([{
+		type: "input",
+		name: "query",
+		message: "Enter title of the game to search (e.g. Digger)"
+	}])
+	.then((answers) => {
+		const { query } = answers;
+		const results = fuzzysort.go(query || "digger", index, { key: "k" });
+		if (results.length === 0) {
+			console.log("Not found any game with this title. Exiting...");
+			process.exit(-1);
+		}
+		inquirer.prompt([{
+			type: "list",
+			name: "game",
+			message: "Please select the game from list",
+			choices: results.slice(0, 10).map(r => r.target)
+		}])
+			.then((answers) => {
+				const { game } = answers;
+				let url = "";
+				for (const next of results) {
+					if (next.target === game) {
+						url = next.obj.v;
+						break;
+					}
+				}
 
-const root = path.join(__dirname, "..");
-const jsdos = path.join(root, "node_modules", "js-dos", "dist");
-const indexHtml = path.join(target, "public", "index.html")
+				if (!url) {
+					console.error("Unexpected error - bundle url not found");
+					process.exit(-2);
+				}
 
-fsextra.copySync(path.join(jsdos, "docs"), path.join(target, "docs"));
-fsextra.copySync(path.join(jsdos, "js-dos.js"), path.join(target, "public", "js-dos.js"));
-fsextra.copySync(path.join(jsdos, "js-dos.js.map"), path.join(target, "public", "js-dos.js.map"));
-fsextra.copySync(path.join(jsdos, "wdosbox.wasm.js"), path.join(target, "public", "wdosbox.wasm.js"));
-fsextra.copySync(path.join(jsdos, "wdosbox.js"), path.join(target, "public", "wdosbox.js"));
-fsextra.copySync(path.join(jsdos, "wdosbox.js.symbols"), path.join(target, "public", "wdosbox.js.symbols"));
-fsextra.copySync(path.join(jsdos, "wdosbox-emterp.wasm.js"), path.join(target, "public", "wdosbox-emterp.wasm.js"));
-fsextra.copySync(path.join(jsdos, "wdosbox-emterp.js"), path.join(target, "public", "wdosbox-emterp.js"));
-fsextra.copySync(path.join(jsdos, "wdosbox-emterp.js.symbols"), path.join(target, "public", "wdosbox-emterp.js.symbols"));
-fsextra.copySync(path.join(jsdos, "wdosbox-nosync.wasm.js"), path.join(target, "public", "wdosbox-nosync.wasm.js"));
-fsextra.copySync(path.join(jsdos, "wdosbox-nosync.js"), path.join(target, "public", "wdosbox-nosync.js"));
-fsextra.copySync(path.join(jsdos, "wdosbox-nosync.js.symbols"), path.join(target, "public", "wdosbox-nosync.js.symbols"));
-fsextra.copySync(path.join(jsdos, "dosbox.js"), path.join(target, "public", "dosbox.js"));
-fsextra.copySync(path.join(jsdos, "dosbox.js.symbols"), path.join(target, "public", "dosbox.js.symbols"));
-fsextra.copySync(path.join(jsdos, "dosbox-emterp.js"), path.join(target, "public", "dosbox-emterp.js"));
-fsextra.copySync(path.join(jsdos, "dosbox-emterp.js.symbols"), path.join(target, "public", "dosbox-emterp.js.symbols"));
-fsextra.copySync(path.join(jsdos, "dosbox-nosync.js"), path.join(target, "public", "dosbox-nosync.js"));
-fsextra.copySync(path.join(jsdos, "dosbox-nosync.js.symbols"), path.join(target, "public", "dosbox-nosync.js.symbols"));
-fsextra.copySync(path.join(root, "tasks", "index.template.html"), indexHtml);
-fsextra.copySync(path.join(root, "tasks", "package.template.json"), path.join(target, "package.json"));
+				generate(url);
+			})
+			.catch(console.error)
+	})
+	.catch(console.error);
 
-const ready = () => {
-    console.log("--");
-    console.log("Ready. To run in browser:");
-    console.log("\tcd " + target);
-    console.log("\tnpm install");
-    console.log("\tnpm start");
-    console.log("--");
-    console.log("\topen 127.0.0.1:8080 in browser")
-}
+async function generate(url) {
+	const site = join(target, "_site");
+	const siteJsDos = join(site, "js-dos");
+	fs.ensureDirSync(site);
+	fs.ensureDirSync(jsdos);
 
-if (archive) {
-    const basename = path.basename(archive);
-    const targetArchive = path.join(target, "public", basename);
-    const executables = [];
-    fsextra.copySync(archive, targetArchive);
+	console.log("Downloading bundle");
+	const downloader = new Downloader({
+		url: url,
+		directory: site,
+		onProgress: function (percentage, chunk, remainingSize) {
+			console.log("Downloading bundle %:", percentage, " remaining bytes:", remainingSize);
+		},
+		filename: "bundle.jsdos",
+	})
 
-    new AdmZip(targetArchive).getEntries().forEach(function(zipEntry) {
-        const entryName = zipEntry.entryName;
-        const lowered = entryName.toLowerCase();
-        if (lowered.endsWith(".exe") || lowered.endsWith(".com") || lowered.endsWith(".bat")) {
-            executables.push(entryName);
-        }
-    });
+	try {
+		await downloader.download();
+	} catch (error) {
+		console.log(error);
+		fs.removeSync(target);
+		process.exit(-3);
+	}
 
-    if (executables.length == 0) {
-        console.error("Can't find executable in archive " + archive);
-        exit(-4);
-    }
+	console.log("Creating web-site");
+	fs.copySync(jsdos, siteJsDos);
+	fs.copySync(join(tasks, "index.template.html"), join(site, "index.html"));
+	fs.copySync(join(tasks, "package.template.json"), join(target, "package.json"));
 
-    const onExecutableSelected = (index) => {
-        if (isNaN(index) || index >= executables.length || index < 0) {
-            console.error("Executable did not selected, exiting...");
-            process.exit(-5);
-        }
-        console.log("Using '" + executables[index] + "'...");
-
-        replace({
-            files: indexHtml,
-            from: ["digger.zip", "DIGGER.COM"],
-            to: [basename, executables[index].replace(/\//g, "\\\\")]
-        }, ready);
-    }
-
-    if (executables.length > 1) {
-        console.log("Please select executable: ");
-        for (let i = 0; i < executables.length; ++i) {
-            console.log((i+1) + ". " + executables[i]);
-        }
-
-        var rl = readline.createInterface({
-            input: process.stdin,
-            output: process.stdout,
-            terminal: false
-        });
-
-        rl.on('line', function(line){
-            rl.close();
-            onExecutableSelected(parseInt(line) - 1);
-        });
-    } else {
-        onExecutableSelected(0);
-    }
-} else {
-    fsextra.copySync(path.join(jsdos, "test", "digger.zip"), path.join(target, "public", "digger.zip"));
-    ready();
+	console.log("Well done...\n\n");
+	console.log("Execute following commands to start local server:");
+	console.log("cd", target);
+	console.log("npm install");
+	console.log("npm run start");
+	console.log("--");
+	console.log("Then open localhost:8080 in browser");
 }

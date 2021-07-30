@@ -1,7 +1,7 @@
 {
   "name": "create-dosbox",
-  "version": "6.22.59",
-  "description": "Set up a dosbox environment in browser ",
+  "version": "7.0.0",
+  "description": "Set up a js-dos environment in browser ",
   "bin": "tasks/create-dosbox.js",
   "main": "tasks/create-dosbox.js",
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/caiiiycuk/create-dosbox.git"
+    "url": "git+https://github.com/js-dos/create-dosbox.git"
   },
   "keywords": [
     "dosbox",
@@ -23,10 +23,11 @@
   },
   "homepage": "https://github.com/caiiiycuk/create-dosbox#readme",
   "dependencies": {
-    "adm-zip": "^0.4.13",
-    "fs-extra": "^7.0.1",
-    "js-dos": "^6.22.59",
-    "replace-in-file": "^3.4.3"
+    "fs-extra": "^10.0.0",
+    "fuzzysort": "^1.1.4",
+    "inquirer": "^8.1.2",
+    "js-dos": "^7.0.0-beta.r34",
+    "nodejs-file-downloader": "^4.7.1"
   },
   "devDependencies": {}
 }
