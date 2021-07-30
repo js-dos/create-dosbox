@@ -1,4 +1,4 @@
-#!/use/bin/env node
+#!/usr/bin/env node
 const fs = require("fs-extra");
 const inquirer = require("inquirer");
 const { join } = require("path");
@@ -7,7 +7,7 @@ const Downloader = require("nodejs-file-downloader");
 
 const root = join(__dirname, "..");
 const tasks = join(root, "tasks");
-const jsdos = join(root, "node_modules", "js-dos", "dist");
+const jsdos = join(tasks, "js-dos");
 const indexJson = join(tasks, "index.json");
 const target = process.argv[2];
 
@@ -93,7 +93,7 @@ async function generate(url) {
 		process.exit(-3);
 	}
 
-	console.log("Creating web-site");
+	console.log("Creating web-site", jsdos, siteJsDos);
 	fs.copySync(jsdos, siteJsDos);
 	fs.copySync(join(tasks, "index.template.html"), join(site, "index.html"));
 	fs.copySync(join(tasks, "package.template.json"), join(target, "package.json"));
