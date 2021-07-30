@@ -94,7 +94,6 @@ async function generate(url) {
 	}
 
 	console.log("Creating web-site", jsdos, siteJsDos);
-	fs.copySync(jsdos, siteJsDos);
 	fs.copySync(join(tasks, "index.template.html"), join(site, "index.html"));
 	fs.copySync(join(tasks, "package.template.json"), join(target, "package.json"));
 
