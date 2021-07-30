@@ -93,7 +93,8 @@ async function generate(url) {
 		process.exit(-3);
 	}
 
-	console.log("Creating web-site", jsdos, siteJsDos);
+	console.log("Creating web-site");
+	fs.copySync(jsdos, siteJsDos);
 	fs.copySync(join(tasks, "index.template.html"), join(site, "index.html"));
 	fs.copySync(join(tasks, "package.template.json"), join(target, "package.json"));
 
