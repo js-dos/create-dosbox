@@ -68,3 +68,4 @@ Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
 
 * [Discord](https://discord.com/invite/hMVYEbG)
 * [Twitter](https://twitter.com/intent/user?screen_name=doszone_db)
+* [Telegram](https://t.me/doszone)
