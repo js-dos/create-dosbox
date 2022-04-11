@@ -4,7 +4,7 @@ Create Dosbox
 Create [js-dos](https://js-dos/v7/build) web page with no build configuration.
 
 Create Dosbox works on macOS, Windows, and Linux.<br>
-If something doesn’t work, please [file an issue](https://github.com/js-dos/create-dosbox/issues/new).<br>
+If something doesn’t work, please [file an issue](https://github.com/caiiiycuk/js-dos/issues/new).<br>
 
 ## Quick Overview
 
