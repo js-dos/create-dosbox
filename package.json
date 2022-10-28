@@ -1,6 +1,6 @@
 {
   "name": "create-dosbox",
-  "version": "7.4.5",
+  "version": "7.4.6",
   "description": "Set up a js-dos environment in browser",
   "bin": "tasks/create-dosbox.js",
   "main": "tasks/create-dosbox.js",
