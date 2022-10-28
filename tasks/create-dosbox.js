@@ -11,6 +11,15 @@ const jsdos = join(tasks, "js-dos");
 const indexJson = join(tasks, "index.json");
 const target = process.argv[2];
 
+const cdnEndPoint = "https://cdn.dos.zone/";
+
+const mapping = {
+    "https://doszone-uploads.s3.dualstack.eu-central-1.amazonaws.com/": cdnEndPoint,
+    "https://doszone-uploads.s3.eu-central-1.amazonaws.com/": cdnEndPoint,
+};
+
+const mappingKeys = Object.keys(mapping);
+
 if (!target) {
 	console.error("Target directory is not set!");
 	console.log("--")
@@ -63,7 +72,7 @@ inquirer
 					process.exit(-2);
 				}
 
-				generate(url);
+				generate(cdnUrl(url));
 			})
 			.catch(console.error)
 	})
@@ -105,4 +114,13 @@ async function generate(url) {
 	console.log("npm run start");
 	console.log("--");
 	console.log("Then open localhost:8080 in browser");
+}
+
+function cdnUrl(url) {
+    for (const next of mappingKeys) {
+        if (url && url.startsWith(next)) {
+            return mapping[next] + url.substr(next.length);
+        }
+    }
+    return url;
 }
