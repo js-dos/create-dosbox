@@ -3,6 +3,8 @@ Deprecated
 
 **This package is based on old version of js-dos, please do not use it**
 
+Please follow [Getting started guide](https://js-dos.com/dos-api.html)
+
 Create Dosbox
 =============
 
